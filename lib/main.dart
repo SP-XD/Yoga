@@ -2,7 +2,7 @@ import 'package:device_preview/device_preview.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:rootllyai/controllers/user_controller.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:rootllyai/main_layout.dart';
 import 'package:rootllyai/pages/home_page.dart';
 import 'package:rootllyai/pages/rehab_page.dart';
@@ -22,6 +22,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       title: 'Flutter Demo',
+      theme: ThemeData(
+        textTheme: GoogleFonts.poppinsTextTheme(),
+      ),
       getPages: [
         GetPage(name: '/', page: () => MyApp()),
         GetPage(name: '/home', page: () => HomePage()),

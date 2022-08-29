@@ -60,7 +60,7 @@ class _MainLayoutState extends State<MainLayout> {
       backgroundColor: Colors.grey.shade300,
       navBarStyle: NavBarStyle.style3,
       navBarHeight: 65,
-      padding: const NavBarPadding.only(bottom: 15.0),
+      padding: const NavBarPadding.only(bottom: 10.0),
     );
   }
 }

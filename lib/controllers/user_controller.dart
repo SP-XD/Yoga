@@ -9,14 +9,16 @@ class UserController extends GetxController {
   };
   var user = User(
           name: "Jane",
-          totalSessions: 16,
-          totalTime: 16,
+          sessionsCompletedToday: 2,
+          sessionsTargetToday: 4,
+          totalSessionsCompleted: 16,
+          totalTimeCompleted: 16,
           sessionsDetails: tempSessionsDetails)
       .obs;
 
   void updateSessions(var date, var time, int sessionId) {
     user.update((user) {
-      user?.sessionsDetails[date][time]=sessionId;
+      user?.sessionsDetails[date][time] = sessionId;
     });
   }
 }

@@ -59,8 +59,8 @@ class _MainLayoutState extends State<MainLayout> {
       confineInSafeArea: true,
       backgroundColor: Colors.grey.shade300,
       navBarStyle: NavBarStyle.style3,
-      navBarHeight: 65,
-      padding: const NavBarPadding.only(bottom: 10.0),
+      navBarHeight: 75,
+      padding: const NavBarPadding.only(bottom: 18.0),
     );
   }
 }

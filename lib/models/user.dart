@@ -2,7 +2,7 @@ class User {
   final String name;
   int totalSessions;
   int totalTime;
-  List sessionsDetails;
+  Map sessionsDetails;
 
   User(
       {required this.name,

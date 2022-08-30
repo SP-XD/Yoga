@@ -74,12 +74,23 @@ class _HomePageState extends State<HomePage> {
                         LinearPercentIndicator(
                           padding: const EdgeInsets.all(0),
                           barRadius: const Radius.circular(5),
-                          width: Get.width * 0.82,
                           lineHeight: 10,
                           percent: progress / 100,
                           backgroundColor: Colors.grey.shade300,
                           progressColor: Colors.blue[700],
                         ),
+                        // Container(
+                        //   child: ClipRRect(
+                        //     borderRadius: const BorderRadius.all(Radius.circular(10)),
+                        //     child: LinearProgressIndicator(
+                        //       value: progress / 100,
+                        //       minHeight: 10,
+                        //       backgroundColor: Colors.grey.shade300,
+                        //       valueColor: AlwaysStoppedAnimation<Color>(
+                        //           Colors.blue.shade700),
+                        //     ),
+                        //   ),
+                        // ),
                         Row(
                           children: [
                             Image.asset(

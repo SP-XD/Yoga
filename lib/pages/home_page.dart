@@ -28,115 +28,107 @@ class _HomePageState extends State<HomePage> {
           child: Column(
             children: [
               Column(
+  Widget progressBanner() {
+    var progress = (userController.user.value.sessionsCompletedToday /
+            userController.user.value.sessionsTargetToday *
+            100)
+        .toInt();
+
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text('Good Morning\n${userController.user.value.name}',
+            style: const TextStyle(
+                height: 1.3, fontSize: 40, fontWeight: FontWeight.bold)),
+        const SizedBox(
+          height: 20,
+        ),
+        Container(
+          width: Get.width,
+          height: 140,
+          padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 14),
+          alignment: Alignment.centerLeft,
+          decoration: BoxDecoration(
+              border: Border.all(color: Colors.grey.shade400, width: 2),
+              borderRadius: const BorderRadius.all(Radius.circular(12))),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Column(
                 mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text('Good Morning\n${userController.user.value.name}',
-                      style: const TextStyle(
-                          height: 1.3,
-                          fontSize: 40,
-                          fontWeight: FontWeight.bold)),
-                  const SizedBox(
-                    height: 20,
+                  Row(
+                    children: [
+                      Text("Today's Progress",
+                          style: TextStyle(
+                              color: Colors.grey.shade700,
+                              fontSize: 28,
+                              fontWeight: FontWeight.w500)),
+                      const Spacer(),
+                      Text(
+                        "${progress}%",
+                        style: TextStyle(
+                            color: Colors.blue[700],
+                            fontSize: 28,
+                            fontWeight: FontWeight.w600),
+                      )
+                    ],
                   ),
-                  Container(
-                    width: Get.width,
-                    height: 130,
-                    padding:
-                        const EdgeInsets.symmetric(vertical: 8, horizontal: 12),
-                    alignment: Alignment.centerLeft,
-                    decoration: BoxDecoration(
-                        border:
-                            Border.all(color: Colors.grey.shade300, width: 2),
-                        borderRadius:
-                            const BorderRadius.all(Radius.circular(10))),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
-                      children: [
-                        Row(
-                          children: [
-                            Text("Today's Progress",
-                                style: TextStyle(
-                                    color: Colors.grey.shade700,
-                                    fontSize: 30,
-                                    fontWeight: FontWeight.w500)),
-                            const Spacer(),
-                            Text(
-                              "${progress}%",
-                              style: TextStyle(
-                                  color: Colors.blue[700],
-                                  fontSize: 30,
-                                  fontWeight: FontWeight.w600),
-                            )
-                          ],
-                        ),
-                        LinearPercentIndicator(
-                          padding: const EdgeInsets.all(0),
-                          barRadius: const Radius.circular(5),
-                          lineHeight: 10,
-                          percent: progress / 100,
-                          backgroundColor: Colors.grey.shade300,
-                          progressColor: Colors.blue[700],
-                        ),
-                        // Container(
-                        //   child: ClipRRect(
-                        //     borderRadius: const BorderRadius.all(Radius.circular(10)),
-                        //     child: LinearProgressIndicator(
-                        //       value: progress / 100,
-                        //       minHeight: 10,
-                        //       backgroundColor: Colors.grey.shade300,
-                        //       valueColor: AlwaysStoppedAnimation<Color>(
-                        //           Colors.blue.shade700),
-                        //     ),
-                        //   ),
-                        // ),
-                        Row(
-                          children: [
-                            Image.asset(
-                              'assets/icons/checked.png',
-                              scale: 1.8,
-                            ),
-                            const SizedBox(
-                              width: 10,
-                            ),
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text('Completed'),
-                                Text(
-                                    '${userController.user.value.sessionsCompletedToday} Sessions',
-                                    style:
-                                        TextStyle(fontWeight: FontWeight.w600)),
-                              ],
-                            ),
-                            const Spacer(),
-                            Image.asset('assets/icons/next-button.png',
-                                scale: 1.8),
-                            const SizedBox(
-                              width: 10,
-                            ),
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text('Pending'),
-                                Text(
-                                    '${userController.user.value.sessionsTargetToday - userController.user.value.sessionsCompletedToday} Sessions',
-                                    style:
-                                        TextStyle(fontWeight: FontWeight.w600)),
-                              ],
-                            )
-                          ],
-                        )
-                      ],
-                    ),
+                  const SizedBox(
+                    height: 8,
+                  ),
+                  LinearPercentIndicator(
+                    padding: const EdgeInsets.all(0),
+                    barRadius: const Radius.circular(5),
+                    lineHeight: 10,
+                    percent: progress / 100,
+                    backgroundColor: Colors.grey.shade300,
+                    progressColor: Colors.blue[700],
+                  ),
+                ],
+              ),
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  Image.asset(
+                    'assets/icons/checked.png',
+                    scale: 1.6,
+                  ),
+                  const SizedBox(
+                    width: 10,
+                  ),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text('Completed'),
+                      Text(
+                          '${userController.user.value.sessionsCompletedToday} Sessions',
+                          style: TextStyle(fontWeight: FontWeight.w600)),
+                    ],
+                  ),
+                  const Spacer(),
+                  Image.asset('assets/icons/next-button.png', scale: 1.6),
+                  const SizedBox(
+                    width: 10,
+                  ),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text('Pending'),
+                      Text(
+                          '${userController.user.value.sessionsTargetToday - userController.user.value.sessionsCompletedToday} Sessions',
+                          style: TextStyle(fontWeight: FontWeight.w600)),
+                    ],
                   )
                 ],
               )
             ],
           ),
-        ),
-      ),
+        )
+      ],
     );
   }
 }

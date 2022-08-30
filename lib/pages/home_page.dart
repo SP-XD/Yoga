@@ -75,7 +75,7 @@ class _HomePageState extends State<HomePage> {
                   height: 10,
                 ),
                 SizedBox(
-                  height: Get.height * 0.5,
+                  height: Get.height * 0.51,
                   child: ListView.builder(
                       //* hardcoded
                       itemCount: 12,
@@ -91,6 +91,34 @@ class _HomePageState extends State<HomePage> {
                 )
               ],
             ),
+          ),
+        ),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      floatingActionButton: Padding(
+        padding: const EdgeInsets.only(bottom: 15),
+        child: TextButton(
+          onPressed: () {},
+          style: ButtonStyle(
+            shadowColor: MaterialStateProperty.all<Color>(Colors.black),
+            fixedSize:
+                MaterialStateProperty.all<Size>(Size(Get.width * 0.85, 62)),
+            padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
+                const EdgeInsets.fromLTRB(0, 0, 0, 0)),
+            backgroundColor:
+                MaterialStateProperty.all<Color?>(Colors.blue.shade700),
+            shape: MaterialStateProperty.all<OutlinedBorder>(
+                const RoundedRectangleBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(50)))),
+          ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Icon(Icons.play_arrow_rounded, size: 40, color: Colors.white),
+              const Text('Start Session',
+                  style: TextStyle(fontSize: 25, color: Colors.white))
+            ],
           ),
         ),
       ),

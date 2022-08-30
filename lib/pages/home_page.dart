@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 import 'package:rootllyai/controllers/user_controller.dart';
 import 'package:rootllyai/responsive/responsive_layout.dart';
+import 'package:timelines/timelines.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -14,24 +15,60 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   UserController userController = Get.put(UserController());
 
+  // * for unit testing
+  var isCompletedArray = [
+    true,
+    true,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+  ];
+
   @override
   Widget build(BuildContext context) {
-    var progress = (userController.user.value.sessionsCompletedToday /
-            userController.user.value.sessionsTargetToday *
-            100)
-        .toInt();
-
     return Scaffold(
       body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.all(20.0),
-          child: Column(
-            children: [
-  Widget SessionCard() {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.start,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.all(20.0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                progressBanner(),
+                const SizedBox(
+                  height: 25,
+                ),
+                SizedBox(
+                  height: Get.height * 0.49,
+                  child: ListView.builder(
+                      //* hardcoded
+                      itemCount: 12,
+                      physics: const BouncingScrollPhysics(),
+                      itemBuilder: (context, index) {
+                        return SessionCard(
+                            index + 1,
+                            isCompletedArray[index],
+                            '11:10 am',
+                            Colors.blueAccent,
+                            'assets/session_imgs/yoga-pose1.png');
+                      }),
+                )
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
   //* sessionbgColor is temporary parameter, and will be removed later
   Widget SessionCard(int sessionId, bool isCompleted, String time,
       Color sessionBgColor, String sessionImgPath) {

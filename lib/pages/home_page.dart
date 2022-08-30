@@ -30,6 +30,34 @@ class _HomePageState extends State<HomePage> {
     false,
     false,
   ];
+  var sessionBgColorArray = [
+    Colors.blueAccent,
+    Colors.green,
+    Colors.deepOrange,
+    Colors.purple,
+    Colors.blueAccent,
+    Colors.green,
+    Colors.deepOrange,
+    Colors.purple,
+    Colors.blueAccent,
+    Colors.green,
+    Colors.deepOrange,
+    Colors.purple,
+  ];
+  var sessionImgsArray = [
+    'assets/session_imgs/yoga-pose1.png',
+    'assets/session_imgs/yoga-pose2.png',
+    'assets/session_imgs/yoga-pose3.png',
+    'assets/session_imgs/yoga-pose4.png',
+    'assets/session_imgs/yoga-pose1.png',
+    'assets/session_imgs/yoga-pose2.png',
+    'assets/session_imgs/yoga-pose3.png',
+    'assets/session_imgs/yoga-pose4.png',
+    'assets/session_imgs/yoga-pose1.png',
+    'assets/session_imgs/yoga-pose2.png',
+    'assets/session_imgs/yoga-pose3.png',
+    'assets/session_imgs/yoga-pose4.png',
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -44,10 +72,10 @@ class _HomePageState extends State<HomePage> {
               children: [
                 progressBanner(),
                 const SizedBox(
-                  height: 25,
+                  height: 10,
                 ),
                 SizedBox(
-                  height: Get.height * 0.49,
+                  height: Get.height * 0.5,
                   child: ListView.builder(
                       //* hardcoded
                       itemCount: 12,
@@ -57,8 +85,8 @@ class _HomePageState extends State<HomePage> {
                             index + 1,
                             isCompletedArray[index],
                             '11:10 am',
-                            Colors.blueAccent,
-                            'assets/session_imgs/yoga-pose1.png');
+                            sessionBgColorArray[index],
+                            sessionImgsArray[index]);
                       }),
                 )
               ],

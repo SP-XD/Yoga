@@ -204,7 +204,7 @@ class _HomePageState extends State<HomePage> {
         ),
         Container(
           width: Get.width,
-          height: 140,
+          height: 130,
           padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 14),
           alignment: Alignment.centerLeft,
           decoration: BoxDecoration(

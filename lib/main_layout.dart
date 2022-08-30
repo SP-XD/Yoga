@@ -57,7 +57,7 @@ class _MainLayoutState extends State<MainLayout> {
       screens: _pages(),
       items: _navBarItems(),
       confineInSafeArea: true,
-      backgroundColor: Colors.grey.shade300,
+      backgroundColor: Colors.grey.shade200,
       navBarStyle: NavBarStyle.style3,
       navBarHeight: 75,
       padding: const NavBarPadding.only(bottom: 18.0),

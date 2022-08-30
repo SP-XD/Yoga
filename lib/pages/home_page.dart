@@ -180,9 +180,14 @@ class _HomePageState extends State<HomePage> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
+                  const SizedBox(
+                    height: 20,
+                  ),
                   Text('Session ${sessionId}',
-                      style:
-                          TextStyle(fontSize: 28, fontWeight: FontWeight.bold)),
+                      style: TextStyle(
+                          height: 0.1,
+                          fontSize: 28,
+                          fontWeight: FontWeight.bold)),
                   isCompleted
                       ? Column(
                           mainAxisAlignment: MainAxisAlignment.start,
@@ -213,10 +218,16 @@ class _HomePageState extends State<HomePage> {
                                 ),
                               ),
                             ),
-                            Text('Performed At'),
+                            Text(
+                              'Performed At',
+                              style: TextStyle(
+                                height: 1,
+                              ),
+                            ),
                             Text(
                               '${time}',
-                              style: TextStyle(fontWeight: FontWeight.bold),
+                              style: TextStyle(
+                                  height: 1.4, fontWeight: FontWeight.bold),
                             )
                           ],
                         )

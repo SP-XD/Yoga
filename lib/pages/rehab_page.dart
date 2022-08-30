@@ -1,7 +1,6 @@
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
-
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:rootllyai/controllers/user_controller.dart';
 
 class RehabPage extends StatefulWidget {
   const RehabPage({Key? key}) : super(key: key);
@@ -11,6 +10,8 @@ class RehabPage extends StatefulWidget {
 }
 
 class _RehabPageState extends State<RehabPage> {
+  UserController userController = Get.put(UserController());
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -78,8 +79,8 @@ class _RehabPageState extends State<RehabPage> {
                         const SizedBox(
                           width: 8,
                         ),
-                        //Todo: implement user modal total sessions
-                        Text("16",
+                        Text(
+                            "${userController.user.value.totalSessionsCompleted}",
                             style: TextStyle(
                                 fontSize: 25, fontWeight: FontWeight.bold))
                       ],
@@ -103,8 +104,7 @@ class _RehabPageState extends State<RehabPage> {
                         const SizedBox(
                           width: 8,
                         ),
-                        //Todo: implement user modal total sessions
-                        Text("16",
+                        Text("${userController.user.value.totalTimeCompleted}",
                             style: TextStyle(
                                 fontSize: 25, fontWeight: FontWeight.bold))
                       ],

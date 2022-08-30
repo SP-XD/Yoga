@@ -27,7 +27,97 @@ class _HomePageState extends State<HomePage> {
           padding: const EdgeInsets.all(20.0),
           child: Column(
             children: [
-              Column(
+  Widget SessionCard() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Container(
+          width: Get.width * 0.1,
+        ),
+        const Spacer(),
+        Container(
+          // width: Get.width * 0.7,
+          padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
+          child: Container(
+            height: 160,
+            width: Get.width * 0.75,
+            padding: const EdgeInsets.all(8),
+            decoration: BoxDecoration(
+                border: Border.all(color: Colors.grey.shade400, width: 2),
+                borderRadius: const BorderRadius.all(Radius.circular(12))),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                const SizedBox(
+                  width: 10,
+                ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text('Session 1',
+                        style: TextStyle(
+                            fontSize: 28, fontWeight: FontWeight.bold)),
+                    Row(
+                      children: [
+                        Icon(
+                          Icons.play_circle_fill_rounded,
+                          size: 32,
+                          color: Colors.blue.shade700,
+                        ),
+                        const SizedBox(
+                          width: 5,
+                        ),
+                        TextButton(
+                          onPressed: () {},
+                          style: ButtonStyle(
+                            minimumSize: MaterialStateProperty.all<Size>(
+                                const Size(20, 10)),
+                            padding:
+                                MaterialStateProperty.all<EdgeInsetsGeometry>(
+                                    const EdgeInsets.fromLTRB(15, 3, 15, 3)),
+                            shape: MaterialStateProperty.all<OutlinedBorder>(
+                                const RoundedRectangleBorder(
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(20)))),
+                            backgroundColor: MaterialStateProperty.all<Color>(
+                                Colors.grey.shade300),
+                          ),
+                          child: const Text(
+                            'Start',
+                            style: TextStyle(
+                              fontSize: 18,
+                              color: Colors.black,
+                            ),
+                          ),
+                        ),
+                      ],
+                    )
+                  ],
+                ),
+                const Spacer(),
+                Container(
+                  alignment: Alignment.center,
+                  width: 130,
+                  padding: const EdgeInsets.all(10),
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.all(Radius.circular(8)),
+                      color: Colors.redAccent),
+                  child: Image.asset(
+                    'assets/session_imgs/yoga-pose1.png',
+                    width: 80,
+                  ),
+                )
+              ],
+            ),
+          ),
+        )
+      ],
+    );
+  }
+
   Widget progressBanner() {
     var progress = (userController.user.value.sessionsCompletedToday /
             userController.user.value.sessionsTargetToday *

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:rootllyai/controllers/user_controller.dart';
 
@@ -113,6 +114,86 @@ class _RehabPageState extends State<RehabPage> {
                 ),
               ],
             ),
+          ),
+          const SizedBox(
+            height: 15,
+          ),
+          SizedBox(
+            height: Get.height * 0.3,
+            child: ListView.separated(
+              itemCount: 7,
+              physics: const BouncingScrollPhysics(),
+              itemBuilder: (context, index) {
+                return historySessionCards();
+              },
+              separatorBuilder: (context, index) {
+                return const SizedBox(
+                  height: 10,
+                );
+              },
+            ),
+          )
+        ],
+      ),
+    );
+  }
+
+  Container historySessionCards() {
+    return Container(
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Container(
+              width: 50,
+              height: 50,
+              decoration: const BoxDecoration(
+                color: Colors.blueAccent,
+                borderRadius: BorderRadius.all(Radius.circular(10)),
+              ),
+              child: Image.asset('assets/session_imgs/yoga-pose1.png',
+                  scale: 3, fit: BoxFit.contain)),
+          const SizedBox(
+            width: 20,
+          ),
+          Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  children: [
+                    Icon(
+                      FontAwesomeIcons.clock,
+                      size: 15,
+                    ),
+                    const SizedBox(width: 5),
+                    Text(
+                      '10:12 am',
+                      style: TextStyle(fontSize: 15),
+                    )
+                  ],
+                ),
+                const SizedBox(
+                  height: 2,
+                ),
+                Row(
+                  children: [
+                    Icon(
+                      FontAwesomeIcons.calendar,
+                      size: 15,
+                    ),
+                    const SizedBox(width: 5),
+                    Text(
+                      '20-11-2020',
+                      style: TextStyle(fontSize: 15),
+                    )
+                  ],
+                ),
+              ]),
+          const Spacer(),
+          Text('View Results', style: TextStyle(fontSize: 15)),
+          const SizedBox(
+            width: 10,
           )
         ],
       ),

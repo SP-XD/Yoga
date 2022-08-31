@@ -1,6 +1,6 @@
-import 'package:device_preview/device_preview.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:rootllyai/main_layout.dart';
@@ -8,10 +8,9 @@ import 'package:rootllyai/pages/home_page.dart';
 import 'package:rootllyai/pages/rehab_page.dart';
 
 void main() {
-  runApp(DevicePreview(
-    enabled: !kReleaseMode,
-    builder: (context) => const MyApp(),
-  ));
+  runApp(const MyApp());
+  SystemChrome.setSystemUIOverlayStyle(
+      SystemUiOverlayStyle(systemNavigationBarColor: Colors.grey.shade200));
 }
 
 class MyApp extends StatelessWidget {

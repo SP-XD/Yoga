@@ -18,7 +18,7 @@ class _HomePageState extends State<HomePage> {
   // * for unit testing
   var isCompletedArray = [
     true,
-    true,
+    false,
     false,
     false,
     false,
@@ -162,127 +162,131 @@ class _HomePageState extends State<HomePage> {
       ),
       contents: Padding(
         padding: EdgeInsets.only(left: 20, top: 10, bottom: 10),
-        child: Container(
-          height: 150,
-          padding: const EdgeInsets.all(8),
-          decoration: BoxDecoration(
-              border: Border.all(color: Colors.grey.shade400, width: 2),
-              borderRadius: const BorderRadius.all(Radius.circular(12))),
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              const SizedBox(
-                width: 10,
-              ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  Text('Session ${sessionId}',
-                      style: TextStyle(
-                          height: 0.1,
-                          fontSize: 28,
-                          fontWeight: FontWeight.bold)),
-                  isCompleted
-                      ? Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            TextButton(
-                              onPressed: () {},
-                              style: ButtonStyle(
-                                minimumSize: MaterialStateProperty.all<Size>(
-                                    const Size(20, 10)),
-                                padding: MaterialStateProperty.all<
-                                        EdgeInsetsGeometry>(
-                                    const EdgeInsets.fromLTRB(15, 3, 15, 3)),
-                                shape:
-                                    MaterialStateProperty.all<OutlinedBorder>(
-                                        const RoundedRectangleBorder(
-                                            borderRadius: BorderRadius.all(
-                                                Radius.circular(20)))),
-                                backgroundColor:
-                                    MaterialStateProperty.all<Color>(
-                                        Colors.blue.shade700),
-                              ),
-                              child: const Text(
-                                'Completed',
-                                style: TextStyle(
-                                  fontSize: 15,
-                                  color: Colors.white,
-                                ),
-                              ),
-                            ),
-                            Text(
-                              'Performed At',
-                              style: TextStyle(
-                                height: 1,
-                              ),
-                            ),
-                            Text(
-                              '${time}',
-                              style: TextStyle(
-                                  height: 1.4, fontWeight: FontWeight.bold),
-                            )
-                          ],
-                        )
-                      : Row(
-                          children: [
-                            Icon(
-                              Icons.play_circle_fill_rounded,
-                              size: 32,
-                              color: Colors.blue.shade700,
-                            ),
-                            const SizedBox(
-                              width: 5,
-                            ),
-                            TextButton(
-                              onPressed: () {},
-                              style: ButtonStyle(
-                                minimumSize: MaterialStateProperty.all<Size>(
-                                    const Size(20, 10)),
-                                padding: MaterialStateProperty.all<
-                                        EdgeInsetsGeometry>(
-                                    const EdgeInsets.fromLTRB(15, 3, 15, 3)),
-                                shape:
-                                    MaterialStateProperty.all<OutlinedBorder>(
-                                        const RoundedRectangleBorder(
-                                            borderRadius: BorderRadius.all(
-                                                Radius.circular(20)))),
-                                backgroundColor:
-                                    MaterialStateProperty.all<Color>(
-                                        Colors.grey.shade300),
-                              ),
-                              child: const Text(
-                                'Start',
-                                style: TextStyle(
-                                  fontSize: 18,
-                                  color: Colors.black,
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                ],
-              ),
-              const Spacer(),
-              Container(
-                alignment: Alignment.center,
-                width: 130,
-                padding: const EdgeInsets.all(10),
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.all(Radius.circular(8)),
-                    color: sessionBgColor),
-                child: Image.asset(
-                  sessionImgPath,
-                  width: 80,
+        child: AnimatedOpacity(
+          opacity: isCompleted ? 0.5 : 1.0,
+          duration: const Duration(milliseconds: 500),
+          child: Container(
+            height: 150,
+            padding: const EdgeInsets.all(8),
+            decoration: BoxDecoration(
+                border: Border.all(color: Colors.grey.shade400, width: 2),
+                borderRadius: const BorderRadius.all(Radius.circular(12))),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                const SizedBox(
+                  width: 10,
                 ),
-              )
-            ],
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    Text('Session ${sessionId}',
+                        style: TextStyle(
+                            height: 0.1,
+                            fontSize: 28,
+                            fontWeight: FontWeight.bold)),
+                    isCompleted
+                        ? Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              TextButton(
+                                onPressed: () {},
+                                style: ButtonStyle(
+                                  minimumSize: MaterialStateProperty.all<Size>(
+                                      const Size(20, 10)),
+                                  padding: MaterialStateProperty.all<
+                                          EdgeInsetsGeometry>(
+                                      const EdgeInsets.fromLTRB(15, 3, 15, 3)),
+                                  shape:
+                                      MaterialStateProperty.all<OutlinedBorder>(
+                                          const RoundedRectangleBorder(
+                                              borderRadius: BorderRadius.all(
+                                                  Radius.circular(20)))),
+                                  backgroundColor:
+                                      MaterialStateProperty.all<Color>(
+                                          Colors.blue.shade700),
+                                ),
+                                child: const Text(
+                                  'Completed',
+                                  style: TextStyle(
+                                    fontSize: 15,
+                                    color: Colors.white,
+                                  ),
+                                ),
+                              ),
+                              Text(
+                                'Performed At',
+                                style: TextStyle(
+                                  height: 1,
+                                ),
+                              ),
+                              Text(
+                                '${time}',
+                                style: TextStyle(
+                                    height: 1.4, fontWeight: FontWeight.bold),
+                              )
+                            ],
+                          )
+                        : Row(
+                            children: [
+                              Icon(
+                                Icons.play_circle_fill_rounded,
+                                size: 32,
+                                color: Colors.blue.shade700,
+                              ),
+                              const SizedBox(
+                                width: 5,
+                              ),
+                              TextButton(
+                                onPressed: () {},
+                                style: ButtonStyle(
+                                  minimumSize: MaterialStateProperty.all<Size>(
+                                      const Size(20, 10)),
+                                  padding: MaterialStateProperty.all<
+                                          EdgeInsetsGeometry>(
+                                      const EdgeInsets.fromLTRB(15, 3, 15, 3)),
+                                  shape:
+                                      MaterialStateProperty.all<OutlinedBorder>(
+                                          const RoundedRectangleBorder(
+                                              borderRadius: BorderRadius.all(
+                                                  Radius.circular(20)))),
+                                  backgroundColor:
+                                      MaterialStateProperty.all<Color>(
+                                          Colors.grey.shade300),
+                                ),
+                                child: const Text(
+                                  'Start',
+                                  style: TextStyle(
+                                    fontSize: 18,
+                                    color: Colors.black,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                  ],
+                ),
+                const Spacer(),
+                Container(
+                  alignment: Alignment.center,
+                  width: 130,
+                  padding: const EdgeInsets.all(10),
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.all(Radius.circular(8)),
+                      color: sessionBgColor),
+                  child: Image.asset(
+                    sessionImgPath,
+                    width: 80,
+                  ),
+                )
+              ],
+            ),
           ),
         ),
       ),

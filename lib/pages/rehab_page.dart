@@ -13,6 +13,44 @@ class RehabPage extends StatefulWidget {
 class _RehabPageState extends State<RehabPage> {
   UserController userController = Get.put(UserController());
 
+  //* testing Data
+  List sessionImgs = [
+    "assets/session_imgs/yoga-pose1.png",
+    "assets/session_imgs/yoga-pose2.png",
+    "assets/session_imgs/yoga-pose3.png",
+    "assets/session_imgs/yoga-pose4.png",
+    "assets/session_imgs/yoga-pose1.png",
+    "assets/session_imgs/yoga-pose2.png",
+    "assets/session_imgs/yoga-pose3.png",
+    "assets/session_imgs/yoga-pose4.png",
+    "assets/session_imgs/yoga-pose1.png",
+    "assets/session_imgs/yoga-pose2.png",
+    "assets/session_imgs/yoga-pose3.png",
+    "assets/session_imgs/yoga-pose4.png",
+    "assets/session_imgs/yoga-pose1.png",
+    "assets/session_imgs/yoga-pose2.png",
+    "assets/session_imgs/yoga-pose3.png",
+    "assets/session_imgs/yoga-pose4.png",
+  ];
+  List sessionImgsColor = [
+    Colors.blueAccent,
+    Colors.green,
+    Colors.deepOrange,
+    Colors.purple,
+    Colors.blueAccent,
+    Colors.green,
+    Colors.deepOrange,
+    Colors.purple,
+    Colors.blueAccent,
+    Colors.green,
+    Colors.deepOrange,
+    Colors.purple,
+    Colors.purple,
+    Colors.blueAccent,
+    Colors.green,
+    Colors.deepOrange,
+    Colors.purple,
+  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -45,6 +83,18 @@ class _RehabPageState extends State<RehabPage> {
   }
 
   Container sessionHistory() {
+    // * Temporay solution to nested map
+    List sessionDates = userController.user.value.sessionsDetails.entries
+        .map((e) => e.key)
+        .toList();
+    List sessionTime = userController
+        .user.value.sessionsDetails[sessionDates[0]].entries
+        .map((e) => e.key)
+        .toList();
+
+    print("seesionDates ${sessionDates}");
+    print("seesionTime ${sessionTime}");
+
     return Container(
       child: Column(
         children: [
@@ -121,10 +171,11 @@ class _RehabPageState extends State<RehabPage> {
           ),
           ListView.separated(
             shrinkWrap: true,
-            itemCount: 7,
+            itemCount: userController.user.value.totalSessionsCompleted,
             physics: const NeverScrollableScrollPhysics(),
             itemBuilder: (context, index) {
-              return historySessionCards();
+              return historySessionCards(sessionDates[0], sessionTime[index],
+                  sessionImgs[index], sessionImgsColor[index]);
             },
             separatorBuilder: (context, index) {
               return const SizedBox(
@@ -137,7 +188,8 @@ class _RehabPageState extends State<RehabPage> {
     );
   }
 
-  Container historySessionCards() {
+  Container historySessionCards(
+      String time, String date, String sessionCardImg, Color sessionImgColor) {
     return Container(
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -146,11 +198,11 @@ class _RehabPageState extends State<RehabPage> {
           Container(
               width: 50,
               height: 50,
-              decoration: const BoxDecoration(
-                color: Colors.blueAccent,
+              decoration: BoxDecoration(
+                color: sessionImgColor,
                 borderRadius: BorderRadius.all(Radius.circular(10)),
               ),
-              child: Image.asset('assets/session_imgs/yoga-pose1.png',
+              child: Image.asset('${sessionCardImg}',
                   scale: 3, fit: BoxFit.contain)),
           const SizedBox(
             width: 20,
@@ -167,7 +219,7 @@ class _RehabPageState extends State<RehabPage> {
                     ),
                     const SizedBox(width: 5),
                     Text(
-                      '10:12 am',
+                      '${time}',
                       style: TextStyle(fontSize: 15),
                     )
                   ],
@@ -183,7 +235,7 @@ class _RehabPageState extends State<RehabPage> {
                     ),
                     const SizedBox(width: 5),
                     Text(
-                      '20-11-2020',
+                      '${date}',
                       style: TextStyle(fontSize: 15),
                     )
                   ],

@@ -1,13 +1,22 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:rootllyai/firebase_options.dart';
 import 'package:rootllyai/main_layout.dart';
 import 'package:rootllyai/pages/home_page.dart';
 import 'package:rootllyai/pages/rehab_page.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  //firebase initializtion
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+
   runApp(const MyApp());
   SystemChrome.setSystemUIOverlayStyle(
       SystemUiOverlayStyle(systemNavigationBarColor: Colors.grey.shade200));

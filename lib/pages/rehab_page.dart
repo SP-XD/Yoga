@@ -18,6 +18,7 @@ class _RehabPageState extends State<RehabPage> {
     return Scaffold(
       body: SafeArea(
           child: SingleChildScrollView(
+        physics: const BouncingScrollPhysics(),
         padding: const EdgeInsets.all(20),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
@@ -127,7 +128,7 @@ class _RehabPageState extends State<RehabPage> {
             },
             separatorBuilder: (context, index) {
               return const SizedBox(
-                height: 10,
+                height: 15,
               );
             },
           )

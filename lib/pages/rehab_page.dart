@@ -71,7 +71,7 @@ class _RehabPageState extends State<RehabPage> {
                 Column(
                   children: [
                     Text('Total Sessions',
-                        style: TextStyle(color: Colors.black, fontSize: 15)),
+                        style: TextStyle(color: Colors.black, fontSize: 12)),
                     Row(
                       children: [
                         Image.asset(
@@ -95,8 +95,8 @@ class _RehabPageState extends State<RehabPage> {
                 ),
                 Column(
                   children: [
-                    Text('Total Sessions',
-                        style: TextStyle(color: Colors.black, fontSize: 15)),
+                    Text('Total Time',
+                        style: TextStyle(color: Colors.black, fontSize: 12)),
                     Row(
                       children: [
                         Image.asset(

@@ -74,21 +74,19 @@ class _HomePageState extends State<HomePage> {
                 const SizedBox(
                   height: 10,
                 ),
-                SizedBox(
-                  height: Get.height * 0.51,
-                  child: ListView.builder(
-                      //* hardcoded
-                      itemCount: 12,
-                      physics: const BouncingScrollPhysics(),
-                      itemBuilder: (context, index) {
-                        return SessionCard(
-                            index + 1,
-                            isCompletedArray[index],
-                            '11:10 am',
-                            sessionBgColorArray[index],
-                            sessionImgsArray[index]);
-                      }),
-                )
+                ListView.builder(
+                    //* hardcoded
+                    itemCount: 12,
+                    shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
+                    itemBuilder: (context, index) {
+                      return SessionCard(
+                          index + 1,
+                          isCompletedArray[index],
+                          '11:10 am',
+                          sessionBgColorArray[index],
+                          sessionImgsArray[index]);
+                    })
               ],
             ),
           ),

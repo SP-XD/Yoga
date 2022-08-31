@@ -118,20 +118,18 @@ class _RehabPageState extends State<RehabPage> {
           const SizedBox(
             height: 15,
           ),
-          SizedBox(
-            height: Get.height * 0.3,
-            child: ListView.separated(
-              itemCount: 7,
-              physics: const BouncingScrollPhysics(),
-              itemBuilder: (context, index) {
-                return historySessionCards();
-              },
-              separatorBuilder: (context, index) {
-                return const SizedBox(
-                  height: 10,
-                );
-              },
-            ),
+          ListView.separated(
+            shrinkWrap: true,
+            itemCount: 7,
+            physics: const NeverScrollableScrollPhysics(),
+            itemBuilder: (context, index) {
+              return historySessionCards();
+            },
+            separatorBuilder: (context, index) {
+              return const SizedBox(
+                height: 10,
+              );
+            },
           )
         ],
       ),

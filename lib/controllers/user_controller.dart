@@ -6,12 +6,6 @@ class UserController extends GetxController {
   // testing data
   static var tempSessionsDetails = {
     "20-11-2020": {
-      "10:20 am": 1,
-      "11:21 am": 2,
-      "11:22 am": 2,
-      "11:23 am": 2,
-      "11:24 am": 2,
-      "11:25 am": 2,
       "11:26 am": 2,
       "11:27 am": 2,
       "11:28 am": 2,
@@ -28,8 +22,8 @@ class UserController extends GetxController {
       "11:59 am": 2,
       "12:11 am": 2,
       "12:21 am": 2,
-      "11:31 am": 2,
     },
+    "21-11-2020": {"1:22: pm": 3},
   };
   var user = User(
           name: "Jane",

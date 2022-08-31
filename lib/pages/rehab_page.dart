@@ -29,7 +29,9 @@ class _RehabPageState extends State<RehabPage> {
     "assets/session_imgs/yoga-pose4.png",
     "assets/session_imgs/yoga-pose1.png",
     "assets/session_imgs/yoga-pose2.png",
-    "assets/session_imgs/yoga-pose3.png",
+    "assets/session_imgs/yoga-pose4.png",
+    "assets/session_imgs/yoga-pose1.png",
+    "assets/session_imgs/yoga-pose2.png",
     "assets/session_imgs/yoga-pose4.png",
   ];
   List sessionImgsColor = [
@@ -83,18 +85,6 @@ class _RehabPageState extends State<RehabPage> {
   }
 
   Container sessionHistory() {
-    // * Temporay solution to nested map
-    List sessionDates = userController.user.value.sessionsDetails.entries
-        .map((e) => e.key)
-        .toList();
-    List sessionTime = userController
-        .user.value.sessionsDetails[sessionDates[0]].entries
-        .map((e) => e.key)
-        .toList();
-
-    print("seesionDates ${sessionDates}");
-    print("seesionTime ${sessionTime}");
-
     return Container(
       child: Column(
         children: [
@@ -169,13 +159,32 @@ class _RehabPageState extends State<RehabPage> {
           const SizedBox(
             height: 15,
           ),
+          //* This is the last solution i came up with to list view nested map
           ListView.separated(
             shrinkWrap: true,
-            itemCount: userController.user.value.totalSessionsCompleted,
             physics: const NeverScrollableScrollPhysics(),
-            itemBuilder: (context, index) {
-              return historySessionCards(sessionDates[0], sessionTime[index],
-                  sessionImgs[index], sessionImgsColor[index]);
+            itemCount: userController.user.value.sessionsDetails.length,
+            itemBuilder: (context, keyIndex) {
+              String keyDate = userController.user.value.sessionsDetails.keys
+                  .elementAt(keyIndex);
+              return ListView.separated(
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
+                itemCount:
+                    userController.user.value.sessionsDetails[keyDate].length,
+                itemBuilder: (context, valueIndex) {
+                  String keyTime = userController
+                      .user.value.sessionsDetails[keyDate].keys
+                      .elementAt(valueIndex);
+                  return historySessionCards(keyDate, keyTime,
+                      sessionImgs[valueIndex], sessionImgsColor[valueIndex]);
+                },
+                separatorBuilder: (context, index) {
+                  return const SizedBox(
+                    height: 15,
+                  );
+                },
+              );
             },
             separatorBuilder: (context, index) {
               return const SizedBox(

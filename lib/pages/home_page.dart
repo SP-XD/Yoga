@@ -16,8 +16,8 @@ class _HomePageState extends State<HomePage> {
   UserController userController = Get.put(UserController());
 
   // * for unit testing
+  var sessionCompleteCounter = 0.obs;
   var isCompletedArray = [
-    true,
     false,
     false,
     false,
@@ -29,7 +29,8 @@ class _HomePageState extends State<HomePage> {
     false,
     false,
     false,
-  ];
+    false,
+  ].obs;
   var sessionBgColorArray = [
     Colors.blueAccent,
     Colors.green,
@@ -71,7 +72,7 @@ class _HomePageState extends State<HomePage> {
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                progressBanner(),
+                Obx(() => progressBanner()),
                 const SizedBox(
                   height: 10,
                 ),
@@ -81,12 +82,12 @@ class _HomePageState extends State<HomePage> {
                     shrinkWrap: true,
                     physics: const NeverScrollableScrollPhysics(),
                     itemBuilder: (context, index) {
-                      return SessionCard(
+                      return Obx(() => SessionCard(
                           index + 1,
                           isCompletedArray[index],
                           '11:10 am',
                           sessionBgColorArray[index],
-                          sessionImgsArray[index]);
+                          sessionImgsArray[index]));
                     })
               ],
             ),
@@ -97,7 +98,16 @@ class _HomePageState extends State<HomePage> {
       floatingActionButton: Padding(
         padding: const EdgeInsets.only(bottom: 15),
         child: TextButton(
-          onPressed: () {},
+          onPressed: () {
+            // * Temporary code to demonstrate working
+            if (sessionCompleteCounter < 12) {
+              isCompletedArray[sessionCompleteCounter.value] = true;
+              sessionCompleteCounter++;
+              userController.user.update((user) {
+                user?.sessionsCompletedToday++;
+              });
+            }
+          },
           style: ButtonStyle(
             shadowColor: MaterialStateProperty.all<Color>(Colors.black),
             fixedSize:

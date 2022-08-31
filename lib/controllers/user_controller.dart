@@ -27,8 +27,8 @@ class UserController extends GetxController {
   };
   var user = User(
           name: "Jane",
-          sessionsCompletedToday: 2,
-          sessionsTargetToday: 4,
+          sessionsCompletedToday: 0,
+          sessionsTargetToday: 12,
           totalSessionsCompleted: 16,
           totalTimeCompleted: 16,
           sessionsDetails: tempSessionsDetails)

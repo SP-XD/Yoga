@@ -49,6 +49,8 @@ class DefaultFirebaseOptions {
     messagingSenderId: '946031418647',
     projectId: 'rootally-ai-assignment',
     authDomain: 'rootally-ai-assignment.firebaseapp.com',
+    databaseURL:
+        'https://rootally-ai-assignment-default-rtdb.europe-west1.firebasedatabase.app',
     storageBucket: 'rootally-ai-assignment.appspot.com',
     measurementId: 'G-4GWF18WZ6Q',
   );
@@ -58,6 +60,8 @@ class DefaultFirebaseOptions {
     appId: '1:946031418647:android:af178ab9b676e58707ab52',
     messagingSenderId: '946031418647',
     projectId: 'rootally-ai-assignment',
+    databaseURL:
+        'https://rootally-ai-assignment-default-rtdb.europe-west1.firebasedatabase.app',
     storageBucket: 'rootally-ai-assignment.appspot.com',
   );
 
@@ -66,8 +70,11 @@ class DefaultFirebaseOptions {
     appId: '1:946031418647:ios:9858e89eaee33d8907ab52',
     messagingSenderId: '946031418647',
     projectId: 'rootally-ai-assignment',
+    databaseURL:
+        'https://rootally-ai-assignment-default-rtdb.europe-west1.firebasedatabase.app/',
     storageBucket: 'rootally-ai-assignment.appspot.com',
-    iosClientId: '946031418647-ptvtrkba6647gv4ebvlldecno0fo8n1u.apps.googleusercontent.com',
+    iosClientId:
+        '946031418647-ptvtrkba6647gv4ebvlldecno0fo8n1u.apps.googleusercontent.com',
     iosBundleId: 'com.example.rootllyai',
   );
 
@@ -77,7 +84,8 @@ class DefaultFirebaseOptions {
     messagingSenderId: '946031418647',
     projectId: 'rootally-ai-assignment',
     storageBucket: 'rootally-ai-assignment.appspot.com',
-    iosClientId: '946031418647-ptvtrkba6647gv4ebvlldecno0fo8n1u.apps.googleusercontent.com',
+    iosClientId:
+        '946031418647-ptvtrkba6647gv4ebvlldecno0fo8n1u.apps.googleusercontent.com',
     iosBundleId: 'com.example.rootllyai',
   );
 }

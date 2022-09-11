@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-User userFromJson(String str) => User.fromJson(json.decode(str));
+import 'package:firebase_database/firebase_database.dart';
 
 String userToJson(User data) => json.encode(data.toJson());
 
@@ -21,13 +21,15 @@ class User {
   int totalTimeCompleted;
   Map sessionsDetails;
 
-  factory User.fromJson(Map<String, dynamic> json) => User(
-        name: json["name"],
-        sessionsCompletedToday: json["sessionsCompletedToday"],
-        sessionsTargetToday: json["sessionsTargetToday"],
-        totalSessionsCompleted: json["totalSessionsCompleted"],
-        totalTimeCompleted: json["totalTimeCompleted"],
-        sessionsDetails: json["sessionsDetails"],
+  factory User.fromSnapshot(DataSnapshot snapshot) => User(
+        name: snapshot.child("name").value as String,
+        sessionsCompletedToday:
+            snapshot.child("sessionsCompletedToday").value as int,
+        sessionsTargetToday: snapshot.child("sessionsTargetToday").value as int,
+        totalSessionsCompleted:
+            snapshot.child("totalSessionsCompleted").value as int,
+        totalTimeCompleted: snapshot.child("totalTimeCompleted").value as int,
+        sessionsDetails: snapshot.child("sessionsDetails").value as Map,
         // sessionDetails: sessionDetails.fromJson(json["sessionDetails"]),
       );
 

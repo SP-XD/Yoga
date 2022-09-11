@@ -18,11 +18,26 @@ class FirebaseMethods {
       if (event.snapshot.exists) {
         print('firebase snapshot : ${event.snapshot.value}');
         //updating user
-        userController.updateUser(userFromJson(event.snapshot.value.toString()));
-        print('user data to json: ${userController.user.value.sessionsDetails}');
+        // userController
+        // .updateUser(userFromJson(event.snapshot.value.toString()));
+        print(
+            'user data to json: ${userController.user.value.sessionsDetails}');
       } else {
         print('No data available');
       }
+    });
+  }
+
+  void updateRecords(int userId, User user) async {
+    DatabaseReference ref = FirebaseDatabase.instance.ref("users/$userId");
+
+    await ref.update({
+      "name": user.name,
+      "sessionsCompletedToday": user.sessionsCompletedToday,
+      "sessionsTargetToday": user.sessionsTargetToday,
+      "totalSessionsCompleted": user.totalSessionsCompleted,
+      "totalTimeCompleted": user.totalTimeCompleted,
+      "sessionsDetails": user.sessionsDetails,
     });
   }
 }

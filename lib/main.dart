@@ -51,7 +51,7 @@ class MyApp extends StatelessWidget {
                 debugPrint(
                     'snapshot data future builder : ${event.snapshot.value}');
                 userController
-                    .updateUser(userFromJson(event.snapshot.value.toString()));
+                    .updateUser(User.fromSnapshot(event.snapshot));
                 debugPrint(
                     'user data after first initialization : ${userController.user.value}');
                 return const MainLayout();

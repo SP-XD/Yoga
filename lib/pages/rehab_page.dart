@@ -100,7 +100,7 @@ class _RehabPageState extends State<RehabPage> {
           const SizedBox(
             height: 10,
           ),
-          Container(
+          Obx(()=>Container(
             padding: const EdgeInsets.all(10),
             decoration: BoxDecoration(
                 color: Colors.grey.shade200,
@@ -155,43 +155,47 @@ class _RehabPageState extends State<RehabPage> {
                 ),
               ],
             ),
-          ),
+          )),
           const SizedBox(
             height: 15,
           ),
           //* This is the last solution i came up with to list view nested map
-          ListView.separated(
-            shrinkWrap: true,
-            physics: const NeverScrollableScrollPhysics(),
-            itemCount: userController.user.value.sessionsDetails.length,
-            itemBuilder: (context, keyIndex) {
-              String keyDate = userController.user.value.sessionsDetails.keys
-                  .elementAt(keyIndex);
-              return ListView.separated(
+          Obx(() => ListView.separated(
                 shrinkWrap: true,
                 physics: const NeverScrollableScrollPhysics(),
-                itemCount:
-                    userController.user.value.sessionsDetails[keyDate].length,
-                itemBuilder: (context, valueIndex) {
-                  String keyTime = userController
-                      .user.value.sessionsDetails[keyDate].keys
-                      .elementAt(valueIndex);
-                  return historySessionCards(keyDate, keyTime,
-                      sessionImgs[valueIndex], sessionImgsColor[valueIndex]);
+                itemCount: userController.user.value.sessionsDetails.length,
+                itemBuilder: (context, keyIndex) {
+                  String keyDate = userController
+                      .user.value.sessionsDetails.keys
+                      .elementAt(keyIndex);
+                  return ListView.separated(
+                    shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
+                    itemCount: userController
+                        .user.value.sessionsDetails[keyDate].length,
+                    itemBuilder: (context, valueIndex) {
+                      String keyTime = userController
+                          .user.value.sessionsDetails[keyDate].keys
+                          .elementAt(valueIndex);
+                      return historySessionCards(
+                          keyDate,
+                          keyTime,
+                          sessionImgs[valueIndex],
+                          sessionImgsColor[valueIndex]);
+                    },
+                    separatorBuilder: (context, index) {
+                      return const SizedBox(
+                        height: 15,
+                      );
+                    },
+                  );
                 },
                 separatorBuilder: (context, index) {
                   return const SizedBox(
                     height: 15,
                   );
                 },
-              );
-            },
-            separatorBuilder: (context, index) {
-              return const SizedBox(
-                height: 15,
-              );
-            },
-          )
+              )),
         ],
       ),
     );

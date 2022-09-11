@@ -4,6 +4,7 @@ import 'package:percent_indicator/linear_percent_indicator.dart';
 import 'package:rootllyai/controllers/user_controller.dart';
 import 'package:rootllyai/responsive/responsive_layout.dart';
 import 'package:timelines/timelines.dart';
+import 'package:intl/intl.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -16,21 +17,6 @@ class _HomePageState extends State<HomePage> {
   UserController userController = Get.put(UserController());
 
   // * for unit testing
-  var sessionCompleteCounter = 0.obs;
-  var isCompletedArray = [
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-  ].obs;
   var sessionBgColorArray = [
     Colors.blueAccent,
     Colors.green,
@@ -84,7 +70,8 @@ class _HomePageState extends State<HomePage> {
                     itemBuilder: (context, index) {
                       return Obx(() => SessionCard(
                           index + 1,
-                          isCompletedArray[index],
+                          index <
+                              userController.user.value.sessionsCompletedToday,
                           '11:10 am',
                           sessionBgColorArray[index],
                           sessionImgsArray[index]));
@@ -99,13 +86,17 @@ class _HomePageState extends State<HomePage> {
         padding: const EdgeInsets.only(bottom: 15),
         child: TextButton(
           onPressed: () {
+            DateTime now = DateTime.now();
+            DateFormat dateTodayFormat = DateFormat('dd-MM-yyyy');
+            DateFormat timeNowFormat = DateFormat.jm();
             // * Temporary code to demonstrate working
-            if (sessionCompleteCounter < 12) {
-              isCompletedArray[sessionCompleteCounter.value] = true;
-              sessionCompleteCounter++;
-              userController.user.update((user) {
-                user?.sessionsCompletedToday++;
-              });
+            if (userController.user.value.sessionsCompletedToday < 12) {
+              userController.user.value.sessionsCompletedToday++;
+              print(
+                  "date time now : ${dateTodayFormat.format(now)}, ${timeNowFormat.format(now)}");
+              //* Todo: hardcoded userId
+              userController.updateSessions(
+                  1, dateTodayFormat.format(now), timeNowFormat.format(now));
             }
           },
           style: ButtonStyle(

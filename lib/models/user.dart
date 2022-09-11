@@ -27,7 +27,7 @@ class User {
         sessionsTargetToday: json["sessionsTargetToday"],
         totalSessionsCompleted: json["totalSessionsCompleted"],
         totalTimeCompleted: json["totalTimeCompleted"],
-        sessionsDetails: {},
+        sessionsDetails: json["sessionsDetails"],
         // sessionDetails: sessionDetails.fromJson(json["sessionDetails"]),
       );
 
@@ -37,6 +37,6 @@ class User {
         "sessionsTargetToday": sessionsTargetToday,
         "totalSessionsCompleted": totalSessionsCompleted,
         "totalTimeCompleted": totalTimeCompleted,
-        // "sessionDetails": sessionDetails.toJson(),
+        "sessionDetails": sessionsDetails,
       };
 }

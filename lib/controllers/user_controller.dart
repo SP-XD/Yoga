@@ -1,6 +1,7 @@
 import 'package:get/state_manager.dart';
 import 'package:get/get.dart';
 import 'package:rootllyai/models/user.dart';
+import 'package:rootllyai/resources/firebase_methods.dart';
 
 class UserController extends GetxController {
   //initial data
@@ -17,9 +18,18 @@ class UserController extends GetxController {
     this.user.value = user;
   }
 
-  void updateSessions(var date, var time, int sessionId) {
+  void updateSessions(int userId, String date, String time) {
     user.update((user) {
-      user?.sessionsDetails[date][time] = sessionId;
+      //for new entries
+      if (!user!.sessionsDetails.containsKey(date)) {
+        user.sessionsDetails[date] = {time: user.sessionsCompletedToday};
+      } else {
+        user.sessionsDetails[date][time] = user.sessionsCompletedToday;
+      }
+      user.totalSessionsCompleted++;
+      user.totalTimeCompleted++;
     });
+
+    FirebaseMethods().updateRecords(userId, user.value);
   }
 }

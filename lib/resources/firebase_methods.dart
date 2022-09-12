@@ -40,4 +40,17 @@ class FirebaseMethods {
       "sessionsDetails": user.sessionsDetails,
     });
   }
+
+  void setRecords(int userId, User user) async{
+    DatabaseReference ref = FirebaseDatabase.instance.ref("users/$userId");
+
+    await ref.set({
+      "name": user.name,
+      "sessionsCompletedToday": user.sessionsCompletedToday,
+      "sessionsTargetToday": user.sessionsTargetToday,
+      "totalSessionsCompleted": user.totalSessionsCompleted,
+      "totalTimeCompleted": user.totalTimeCompleted,
+      "sessionsDetails": user.sessionsDetails,
+    });
+  }
 }

@@ -11,6 +11,7 @@ import 'package:rootllyai/main_layout.dart';
 import 'package:rootllyai/models/user.dart';
 import 'package:rootllyai/pages/home_page.dart';
 import 'package:rootllyai/pages/rehab_page.dart';
+import 'package:rootllyai/resources/firebase_methods.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -32,6 +33,8 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    //hardcoded temp firebase initialization for first time
+    FirebaseMethods().setRecords(1, userController.user.value);
     return GetMaterialApp(
         title: 'Flutter Demo',
         theme: ThemeData(
@@ -50,8 +53,7 @@ class MyApp extends StatelessWidget {
                 var event = snapshot.data as DatabaseEvent;
                 debugPrint(
                     'snapshot data future builder : ${event.snapshot.value}');
-                userController
-                    .updateUser(User.fromSnapshot(event.snapshot));
+                userController.updateUser(User.fromSnapshot(event.snapshot));
                 debugPrint(
                     'user data after first initialization : ${userController.user.value}');
                 return const MainLayout();

@@ -5,14 +5,18 @@ import 'package:rootllyai/resources/firebase_methods.dart';
 
 class UserController extends GetxController {
   //initial data
+  //* hardcoded
   var user = User(
       name: "Jane",
       sessionsCompletedToday: 0,
-      //* hardcoded
       sessionsTargetToday: 12,
-      totalSessionsCompleted: 0,
-      totalTimeCompleted: 0,
-      sessionsDetails: {}).obs;
+      totalSessionsCompleted: 1,
+      totalTimeCompleted: 1,
+      sessionsDetails: {
+        "11-09-2022": {
+          "4:33 PM": 1,
+        }
+      }).obs;
 
   updateUser(User user) {
     this.user.value = user;

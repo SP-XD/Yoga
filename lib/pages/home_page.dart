@@ -45,6 +45,9 @@ class _HomePageState extends State<HomePage> {
     'assets/session_imgs/yoga-pose3.png',
     'assets/session_imgs/yoga-pose4.png',
   ];
+  //session time is stored liked this cuz home page does not involve going back to previous dates
+  //also this is temporary
+  var sessionsTime = [];
 
   @override
   Widget build(BuildContext context) {
@@ -72,7 +75,9 @@ class _HomePageState extends State<HomePage> {
                           index + 1,
                           index <
                               userController.user.value.sessionsCompletedToday,
-                          '11:10 am',
+                          index < sessionsTime.length
+                              ? sessionsTime[index]
+                              : '',
                           sessionBgColorArray[index],
                           sessionImgsArray[index]));
                     })
@@ -94,6 +99,8 @@ class _HomePageState extends State<HomePage> {
               userController.user.value.sessionsCompletedToday++;
               print(
                   "date time now : ${dateTodayFormat.format(now)}, ${timeNowFormat.format(now)}");
+              //* updating local time list
+              sessionsTime.add(timeNowFormat.format(now));
               //* Todo: hardcoded userId
               userController.updateSessions(
                   1, dateTodayFormat.format(now), timeNowFormat.format(now));

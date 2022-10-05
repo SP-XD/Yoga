@@ -1,6 +1,16 @@
-# rootllyai
+# Rootllyai
 
 A new Flutter project.
+
+## Video Showcase
+[Showcase](https://user-images.githubusercontent.com/69642436/194080471-3361561c-4581-4b54-9618-aec557eceb27.mp4)
+
+## Tech Stack
+
+- <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flutter/flutter-original.svg" width="20px"/> Flutter
+  - GetX for state management
+- <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg" width="20px" /> Firebase
+  - Firebase DB for database
 
 ## Getting Started
 
